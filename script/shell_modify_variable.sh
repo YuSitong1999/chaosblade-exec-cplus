@@ -2,6 +2,7 @@
 
 expect -c "
   spawn gdb
+  send \"\n\";
   expect {
     \"gdb\" {send \"file $1\n\";}
   }
@@ -36,5 +37,11 @@ expect -c "
     \"gdb\" {send \"r $7\n\";}
   }
 
- interact
+  while {1} {
+      expect {
+          timeout {
+              send \"Keepalive\\r\"
+          }
+      }
+  }
 "

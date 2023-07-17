@@ -36,5 +36,11 @@ expect -c "
     \"gdb\" {send \"c\n\";}
   }
 
- interact
+  while {1} {
+      expect {
+          timeout {
+              send \"Keepalive\\r\"
+          }
+      }
+  }
 "

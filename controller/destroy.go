@@ -73,7 +73,7 @@ func (d *DestroyController) GetRequestHandler() func(writer http.ResponseWriter,
 		}
 		var pid string
 		if len(pids) > 0 {
-			pid = strings.Join(pids, ",")
+			pid = strings.Join(pids, " ")
 		}
 
 		response := localChannel.Run(context.Background(),

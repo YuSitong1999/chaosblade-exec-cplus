@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# send \"\n\";
+# Used to skip gdb's welcome screen when 'spawn gdb' in some versions.
+# Extra newlines should not cause errors in other versions of gdb.
+# 'spawn gdb -q attach $1' does not need this line
+
 expect -c "
   spawn gdb
+  send \"\n\";
   expect {
     \"gdb\" {send \"file $1\n\";}
   }
@@ -36,5 +42,14 @@ expect -c "
     \"gdb\" {send \"r $6\n\";}
   }
 
- interact
+  while {1} {
+      expect {
+          timeout {
+              send \"Keepalive\\r\"
+          }
+      }
+  }
 "
+
+# 'interact' in old version of expect will cause gdb to quit.
+# use 'while {1}{...}' to avoid quit gdb

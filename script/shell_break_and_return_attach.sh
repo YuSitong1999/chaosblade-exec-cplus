@@ -39,5 +39,11 @@ expect -c "
     \"beginning\" {send \"y\n\";}
   }
 
- interact
+  while {1} {
+      expect {
+          timeout {
+              send \"Keepalive\\r\"
+          }
+      }
+  }
 "
