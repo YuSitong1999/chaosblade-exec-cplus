@@ -45,3 +45,7 @@ Gitter room: [chaosblade community](https://gitter.im/chaosblade-io/community)
 
 ## License
 Chaosblade-exec-cplus is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.
+
+```shell
+./chaosblade-exec-cplus --nohup --ip "0.0.0.0" --port 9525
+```

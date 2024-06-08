@@ -71,6 +71,25 @@ func (l *LineDelayedExecutor) Name() string {
 	return "delay"
 }
 
+/*
+Exec 注入延迟故障
+
+参数：
+
+delayDuration：延迟时间，单位为秒。不为空
+
+processName：进程名，不为空
+
+fileLocateAndName：文件路径和名称。进程名不存在时用于启动进程。
+
+forkMode：fork模式。可选值：parent、child。默认值：parent
+
+libLoad：是否加载动态库。可选值。
+
+breakLine：断点行号。实际不应为空。
+
+initParams：初始化参数。TODO 含义未知？
+*/
 func (l *LineDelayedExecutor) Exec(uid string, ctx context.Context, model *spec.ExpModel) *spec.Response {
 	delayDuration := model.ActionFlags["delayDuration"]
 	if delayDuration == "" {

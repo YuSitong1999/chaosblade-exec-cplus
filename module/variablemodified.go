@@ -76,6 +76,27 @@ func (v *VariableModifiedExecutor) Name() string {
 	return "modify"
 }
 
+/*
+Exec 注入代码变量值修改故障
+
+参数：
+
+variableName：变量名，不为空
+
+variableValue：变量值，不为空
+
+processName：进程名，不为空
+
+fileLocateAndName：文件路径和名称。进程名不存在时用于启动进程。
+
+forkMode：fork模式。可选值：parent、child。默认值：parent
+
+libLoad：是否加载动态库。可选值。
+
+breakLine：断点行号。实际不应为空。
+
+initParams：初始化参数。TODO 含义未知？
+*/
 func (v *VariableModifiedExecutor) Exec(uid string, ctx context.Context, model *spec.ExpModel) *spec.Response {
 	variableName := model.ActionFlags["variableName"]
 	if variableName == "" {
